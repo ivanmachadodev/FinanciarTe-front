@@ -1,0 +1,47 @@
+<div class="p-5 mx-3">
+  <div class="row p-2">
+      <div class="col-lg-10 col-md-10 col-sm-12">
+          <h1>Listado de Cuotas por Cliente</h1>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12">
+          <button type="button" class="btn button-primary-action" (click)="registrarPagos(cuotas[0].dni)">Registrar Pagos</button>
+      </div>
+  </div>
+  <hr>
+  <br>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-hover mtc-5 table-sm">
+        <thead class="table table-hover mtc-5 table-sm table-headers">
+          <tr>
+            <th scope="col" class="text-center">DNI</th>
+            <th scope="col" class="text-center">Cliente</th>
+            <th scope="col" class="text-center">Prestamo</th>
+            <th scope="col" class="text-center">Cuota N°</th>
+            <th scope="col" class="text-center">Fecha Vencimiento</th>            
+            <th scope="col" class="text-center">Monto Cuota</th>
+            <th scope="col" class="text-center">Monto Abonado</th>
+            <th scope="col" class="text-center">Estado / Pago</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of cuotas">
+            <td scope="col" class="text-center">{{c.dni }}</td>
+            <td scope="col" class="text-center">{{c.cliente}}</td>
+            <td scope="col" class="text-center">{{c.idPrestamo}}</td>
+            <td scope="col" class="text-center">{{c.cuotaN}}</td>
+            <td scope="col" class="text-center">{{c.fechaDeVencimiento}}</td>
+            <td scope="col" class="text-center">{{c.montoDeCuota | currency:'ARS':'symbol-narrow':'1.2-2'}}</td>
+            <td scope="col" class="text-center">{{c.montoAbonado | currency:'ARS':'symbol-narrow':'1.2-2'}}</td>
+            <td scope="col" class="text-center" [ngClass]="{'importe-negativo': c.cuotaVencida == 'Vencida', 'importe-positivo': c.cuotaVencida != 'Vencida'}">{{c.cuotaVencida}}</td>
+            <td scope="col" class="text-center">            
+                <i type="button" class="fa-solid fa-eye me-2 icono" tippy="Ver Cuota"></i>
+                <i type="button" class="fa-solid fa-ban me-2 icono" tippy="Anular Pago Cuota"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

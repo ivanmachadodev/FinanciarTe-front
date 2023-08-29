@@ -1,0 +1,113 @@
+<div class="container p-5">
+  <div class="row py-5">
+    <div class="col">
+      <h1 class="fs-1"><i class="fa-solid fa-user-tag px-5"></i>{{ cliente.apellidos }}, {{ cliente.nombres }} </h1>
+    </div>
+  </div>
+  <div class="row my-4 pb-5">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="row">
+        <h1><i class="fa-solid fa-address-card p-2"></i>Datos personales</h1>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-cake-candles px-3"></i>{{ cliente.fechaDeNacimiento | edad }} años - {{ cliente.fechaDeNacimiento | date: "dd/MM/YYYY"}}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-phone px-3"></i>{{ cliente.telefono }} </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-at px-3"></i>{{ cliente.email }} </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-location-dot px-3"></i>{{ cliente.direccion }} - {{ cliente.ciudad }}, {{ cliente.provincia }} </h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h1><i class="fa-solid fa-magnifying-glass-chart p-2"></i>Status</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-chart-simple px-3"></i>Cantidad de prestamos: {{cliente.cantidadDePrestamos}}</h3>
+        </div>
+      </div>
+      <div class="row">        
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div [ngSwitch]="cliente.scoring">
+            <div *ngSwitchCase="1"><h3><i class="fa-solid fa-ban px-3"></i>Scoring: {{ cliente.scoring }}</h3></div>
+            <div *ngSwitchCase="2"><h3><i class="fa-regular fa-star-half px-3"></i>Scoring: {{ cliente.scoring }}</h3></div>
+            <div *ngSwitchCase="3"><h3><i class="fa-regular fa-star px-3"></i>Scoring: {{ cliente.scoring }}</h3></div>
+            <div *ngSwitchCase="4"><h3><i class="fa-solid fa-star-half-stroke px-3"></i>Scoring: {{ cliente.scoring }}</h3></div>
+            <div *ngSwitchCase="5"><h3><i class="fa-solid fa-star px-3"></i>Scoring: {{ cliente.scoring }}</h3></div>
+          </div>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-percent px-3"></i>Beneficio Scoring: {{cliente.beneficioScoring}}</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <h3><i class="fa-solid fa-chart-line px-3"></i>Puntos actuales: {{cliente.puntosActuales}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contactoAlternativo my-4 py-5 col-xl-10 col-lg-10 col-md-10 col-sm-12">    
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <h1><i class="fa-solid fa-user-group px-3"></i>Contacto alternativo</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <h3><i class="fa-solid fa-signature px-3"></i>{{ cliente.contactoAlternativo }}</h3>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <h3><i class="fa-solid fa-phone px-3"></i>{{ cliente.telContAlt }}</h3>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <h3><i class="fa-solid fa-at px-3"></i>{{ cliente.emailContAlt }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row my-4 py-5 col-xl-10 col-lg-10 col-md-10 col-sm-12">
+    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
+      <!-- <h2 [ngClass]="{'habilitado': statusOk, 'no-habilitado': !statusOk}"> {{ statusString }}</h2> -->
+      <h2 [ngStyle]="{ 'color': colorTexto }"> {{ statusString }}</h2>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+      <div class="dropdown-center dropdown">
+        <button type="button" class="btn button-primary-action dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Acciones</button>
+        <ul class="dropdown-menu">
+          <li><a [ngClass]="{'disabled': !statusOk}" class="dropdown-item" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="newPrestamo(cliente.dni)">Nuevo Prestamo</a></li>
+          <li><a class="dropdown-item" [routerLink]="'/prestamos/listado/' + cliente.dni">Listado de Prestamos</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" [routerLink]="'/cuotas/alta/' + cliente.dni">Pagar Cuotas</a></li>
+          <li><a class="dropdown-item" [routerLink]="'/cuotas/listado/' + cliente.dni">Cuotas activas</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" [routerLink]="'/puntos/puntaje-cliente/' + cliente.dni">Histórico de puntos</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div *ngIf="offCanvasNewPrestamo == true">
+  <app-altaprestamo [cliente]="cliente"></app-altaprestamo>
+</div>

@@ -1,0 +1,46 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" [class.show]="offCanvasVista">
+    <div class="offcanvas-header">
+      <h1 class="offcanvas-title" id="offcanvasExampleLabel">Prestamo N° {{prestamo.idPrestamo}}</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <h2 class="py-2">Estado: {{prestamo.estado}}</h2>
+      <div class="rounded-4 pad py-2">
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>Cuotas</h4>
+            </div>
+        </div>
+        <hr />
+        <div class="row container" *ngFor="let c of prestamo.cuotas">
+          <article>
+            <div class="row">
+                <div class="col">
+                    <p>Cuota {{c.nroCuota}}</p>
+                </div>
+            </div>
+            <div class="row">              
+              <div class="col-sm-8">
+                <p>Vencimientio: {{c.fechaVencimiento | date: "dd/MM/yyyy"}}</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="text-end">{{c.montoCuota | currency:'ARS':'symbol-narrow':'1.2-2'}}</p>
+              </div>
+            </div>
+            <div class="row" *ngIf="c.montoAbonado">
+                <div class="col-sm-8">
+                  <p [ngClass]="{'importe-negativo': c.cuotaVencida === 'Vencida', 'importe-positivo': c.cuotaVencida === 'En plazo'}">Pagada - {{c.cuotaVencida}} - {{c.fechaPago | date: "dd/MM/yyyy"}}</p>
+                </div>
+                <div class="col-sm-4">
+                  <p class="text-end">{{c.montoAbonado | currency:'ARS':'symbol-narrow':'1.2-2'}}</p>
+                </div>
+            </div>
+            <div class="row" *ngIf="!c.montoAbonado">
+                <p [ngClass]="{'importe-negativo': c.cuotaVencida === 'Vencida', 'importe-positivo': c.cuotaVencida === 'En plazo'}">{{c.cuotaVencida}}</p>
+            </div>
+            <hr>
+          </article>
+        </div>
+      </div>
+    </div>
+</div>

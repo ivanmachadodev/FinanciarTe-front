@@ -1,0 +1,31 @@
+<div class="login">
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12">
+      <img src="../../../../assets/login-cover.png" alt="financiarTe-cover">
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12" style="background-color: white;">
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="form px-3">
+        <div>
+          <img src="../../../../assets/marca-financiarte.png" alt="FinanciarTe" class="img-financiarte">
+        </div>        
+        <hr />
+        <div class="mb-4 form-group">
+          <label class="form-label">Usuario</label>
+          <input type="text" class="form-control" name="user" formControlName="user"
+            [class.red-icon]="this.loginForm.get('user')?.invalid" />
+        </div>
+        <div class="mb-4 form-group">
+          <label class="form-label">Contraseña</label><span class="eyeIcon" style="padding-left: 5px;" (click)="viewpass()">
+            <i [ngClass]="visible?'fa-solid fa-eye-slash':'fa-solid fa-eye'" tippy="Ver contraseña"></i></span>
+          <input [type]="changeType?'password':'text'" class="form-control" name="pass" formControlName="pass"
+            [class.red-icon]="this.loginForm.get('pass')?.invalid" />
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn button-primary-action" [disabled]="loginForm.invalid">Iniciar sesión</button>
+        </div>
+        <div class="d-flex mt-2 justify-content-center" tippy="Volver al inicio">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

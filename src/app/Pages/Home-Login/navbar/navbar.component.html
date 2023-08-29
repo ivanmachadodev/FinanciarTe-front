@@ -1,0 +1,56 @@
+<div class="sidebar" *ngIf="nav.visible">
+  <div class="logo">
+    <img src="../../../../assets/Icono2.png" alt="Logo">
+  </div>
+  <ul class="nav-links">
+    <li *ngIf="this.userHasRole(['CEO', 'Director', 'Gerente', 'Jefe'])"><a routerLink="dashboard"><i class="fas fa-chart-bar"></i>Dashboard</a></li>
+    <li *ngIf="this.userHasRole(['CEO', 'Director', 'Gerente', 'Jefe', 'Agente'])">
+      <a><i class="fas fa-users"></i>Clientes</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/clientes/alta">Nuevo Cliente</a></li>
+        <li><a routerLink="/clientes/listado">Listado de clientes</a></li>
+        <li><a (click)="buscarCliente()">Buscar cliente</a></li>
+      </ul>
+    </li>
+    <li *ngIf="this.userHasRole(['CEO', 'Director', 'Gerente', 'Jefe', 'Agente'])">
+      <a><i class="fas fa-money-bill"></i>Préstamos</a>
+      <ul class="sub-menu">
+        <li><a (click)="prestamosPorCliente()">Prestamos por Cliente</a></li>
+        <li><a routerLink="/prestamos/listadogeneral">Listado de Prestamos</a></li>
+      </ul>
+    </li>
+    <li *ngIf="this.userHasRole(['CEO', 'Director', 'Gerente', 'Jefe', 'Agente'])">
+      <a><i class="fa-solid fa-chart-line"></i>Puntos</a>
+      <ul class="sub-menu">
+        <li><a (click)="puntosPorCliente()">Puntos por Cliente</a></li>
+        <li><a routerLink="/puntos/listado">Listado de Puntos</a></li>
+      </ul>
+    </li>
+    <li *ngIf="this.userHasRole(['CEO', 'Director', 'Gerente', 'Jefe', 'Agente'])">
+      <a><i class="fas fa-exchange-alt"></i>Transacciones</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/transacciones/registrar">Nueva Transacción</a></li>
+        <li><a routerLink="/transacciones/listado">Listado de Transacciones</a></li>
+      </ul>
+    </li>
+    <li *ngIf="this.userHasRole(['Administrador'])">
+      <a><i class="fas fa-cogs"></i>Ajustes</a>
+      <ul class="sub-menu">
+        <li><a routerLink="/usuarios/alta">Alta usuario</a></li>
+        <li><a routerLink="/usuarios/listado">Listado de usuarios</a></li>
+      </ul>
+    </li>
+    <li>
+      <a><i class="fa-regular fa-circle-question" style="color: #ffffff;"></i>Ayuda</a>
+    </li>
+  </ul>
+  <div class="fixed-bottom p-3" style="width: 160px;">
+    <div class="dropup my-2">
+      <p class="user dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><a><i class="fa-solid fa-user px-2" style="color: #ffffff;"></i>{{user}}</a></p>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item user-item" (click)="modificarDatos()">Modificar Datos <i class="fa-solid fa-pen-to-square px-1"></i></a></li>
+        <li><a class="dropdown-item user-item" routerLink="">Salir <i (click)="desloguear()" class="fa-solid fa-power-off px-1"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>

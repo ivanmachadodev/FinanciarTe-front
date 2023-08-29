@@ -1,0 +1,23 @@
+<div class="container">
+    <div style="width: 700px">
+        <h2 class="text-center">Variación del Dolar e Indice FinanciarTe</h2>
+        <canvas baseChart type="bar" [data]="datos" [options]="options"></canvas>
+    </div>
+    <form [formGroup]="form" class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col p-3">
+                    <label for="fechaDesde">Desde</label>
+                    <input type="date" (change)="filtrarFechas()" class="form-control form-control-sm" id="fechaDesde" formControlName="fechaDesde" [value]="fechaDesde"/>
+                </div>
+                <div class="col p-3">
+                    <label for="fechaHasta">Hasta</label>
+                    <input type="date" (change)="filtrarFechas()" class="form-control form-control-sm" id="fechaHasta" formControlName="fechaHasta" [value]="fechaHasta"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-3">
+            <span>Histórico desde el {{hFechas[0] | date: "dd/MM/YYYY"}} hasta el {{hFechas[hFechas.length-1] | date: "dd/MM/YYYY"}}</span>
+        </div>
+    </form>
+</div>

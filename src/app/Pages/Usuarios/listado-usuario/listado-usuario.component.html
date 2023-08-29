@@ -1,0 +1,45 @@
+<div class="p-5 mx-3">
+  <div class="row p-2">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h1>Listado de Usuarios</h1>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12">
+        <button type="button" class="btn button-primary-action" (click)="nuevoUsuario()">Nuevo usuario</button>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table id="tablaUsuarios" class="table table-hover">
+        <thead class="table table-hover table-headers">
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Legajo</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of usuarios">
+            <td scope="col">{{u.nombres}} {{u.apellidos}}</td>
+            <td scope="col">{{u.legajo}}</td>
+            <td scope="col">{{u.calle}} {{u.numero}}</td>
+            <td scope="col">{{u.telefono}}</td>
+            <td scope="col">{{u.user}}</td>
+            <td scope="col">{{u.tipoUsuario}}</td>
+            <td scope="col">{{u.activo}}</td>
+            <td scope="col">
+              <i type="button"(click)="modificarUsuario(u.legajo)"  class="fa-solid fa-pencil me-3 icono iconos-fontawesome" tippy="Editar cliente" ></i>
+              <i type="button" (click)="desactivar(u.legajo)" class="fa-solid fa-ban me-3 icono iconos-fontawesome" tippy="Desactivar cliente"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

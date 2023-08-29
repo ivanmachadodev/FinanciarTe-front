@@ -1,0 +1,44 @@
+<div class="p-5 mx-3">
+  <div class="row p-2">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h1>Listado de Transacciones</h1>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12">
+        <button type="button" class="btn button-primary-action" (click)="registrarTransaccion()">Nueva transacción</button>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table table-hover table-headers">
+          <tr>
+            <th scope="col" class="text-center">ID Transacción</th>
+            <th scope="col" class="text-center">Fecha</th>
+            <th scope="col" class="text-center">Entidad Financiera</th>
+            <th scope="col" class="text-center">Monto</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of transacciones">
+            <td scope="col">{{t.idTransaccion }}</td>
+            <td scope="col">{{t.fechaTransaccion | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+            <td scope="col">{{t.entidadFinanciera}}</td>
+            <td scope="col" class="text-center" [ngClass]="{'importe-negativo': t.montoTotal< 0, 'importe-positivo': t.montoTotal >= 0}">{{t.montoTotal | currency:'ARS':'symbol-narrow':'1.2-2'}}</td>
+            <td scope="col" class="text-center">
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="verTransaccion(t.idTransaccion)" class="fa-solid fa-eye me-3 icono iconos-fontawesome" tippy="Ver Transaccion"></i>
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="ModificarTransaccion(t.idTransaccion)"  class="fa-solid fa-pencil me-3 icono iconos-fontawesome" tippy="Editar Transaccion" ></i>
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="anular(t.idTransaccion)" class="fa-solid fa-ban me-3 icono iconos-fontawesome" tippy="Anular Transaccion"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="offCanvasVista == true">
+  <app-vista-transaccion [id]="idTr"></app-vista-transaccion>
+</div>

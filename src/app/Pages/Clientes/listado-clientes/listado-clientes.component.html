@@ -1,0 +1,42 @@
+<div class="p-5 mx-3">
+  <div class="row p-2">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h1>Listado de Clientes</h1>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12">
+        <button type="button" class="btn button-primary-action" (click)="nuevoCliente()">Nuevo cliente</button>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-headers">
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Email</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clientes">
+            <td scope="col">{{c.nombres}} {{c.apellidos}}</td>
+            <td scope="col">{{c.dni}}</td>
+            <td scope="col">{{c.telefono}}</td>
+            <td scope="col">{{c.email}}</td>
+            <td scope="col">{{c.direccion}}</td>
+            <td scope="col">
+              <i type="button" (click)="verCliente(c.dni)" class="fa-solid fa-eye me-3 icono iconos-fontawesome" tippy="Ver Cliente"></i>
+              <i type="button"(click)="ModificarCliente(c.dni)"  class="fa-solid fa-pencil me-3 icono iconos-fontawesome" tippy="Editar cliente" ></i>
+              <i type="button" (click)="desactivar(c.dni)" class="fa-solid fa-ban me-3 icono iconos-fontawesome" tippy="Desactivar cliente"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

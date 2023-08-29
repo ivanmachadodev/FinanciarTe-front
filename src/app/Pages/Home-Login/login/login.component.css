@@ -1,0 +1,26 @@
+@import url('../../../../styles.css');
+
+.login{
+  height: 100vh;
+  width: 206vh;
+}
+
+img{
+  height: 100vh;
+  width: 156vh;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 45vh;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.img-financiarte{
+  width: 40vh;
+  height: 20vh;
+  margin-bottom: 2rem;
+}

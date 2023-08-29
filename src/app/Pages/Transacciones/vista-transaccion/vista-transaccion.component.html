@@ -1,0 +1,27 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" [class.show]="offCanvasVista">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title" id="offcanvasExampleLabel">Transaccion N° {{transaccion.idTransaccion}}</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <h2 class="py-2">Entidad Financiera: {{transaccion.entidadFinanciera}}</h2>
+    <div class="rounded-4 pad py-2">
+      <h4>Detalle</h4>
+      <hr />
+      <div class="row container" *ngFor="let dt of transaccion.detalleTransacciones">
+        <article>
+          <div class="row">
+            <div class="col-sm-8">
+              <h2>{{dt.categoria }}</h2>
+              <h4>{{dt.detalle}}</h4>
+            </div>
+            <div class="col-sm-4">
+              <h3 class="text-end" [ngClass]="{'importe-negativo': dt.monto< 0, 'importe-positivo': dt.monto >= 0}">{{dt.monto | currency:'ARS':'symbol-narrow':'1.2-2'}}</h3>
+            </div>
+          </div>
+          <hr>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

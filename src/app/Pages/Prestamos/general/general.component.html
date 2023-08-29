@@ -1,0 +1,43 @@
+<div class="p-5 mx-3">
+  <div class="row p-2">
+    <div class="col-lg-10 col-md-10 col-sm-12">
+        <h1>Listado de Prestamos</h1>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table table-hover table-headers">
+          <tr>
+            <th scope="col" class="text-center">ID Prestamo</th>
+            <th scope="col" class="text-center">ID Cliente</th>
+            <th scope="col" class="text-center">Monto Otorgado</th>
+            <th scope="col" class="text-center">Estado</th>
+            <th scope="col" class="text-center">Cuotas Pagas</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of prestamos">
+            <td scope="col" class="text-center">{{p.idPrestamo }}</td>
+            <td scope="col" class="text-center">{{p.dniCliente }}</td>
+            <td scope="col" class="text-center">{{p.montoOtorgado | currency:'ARS':'symbol-narrow':'1.2-2'}}</td>
+            <td scope="col" class="text-center">{{p.estado}}</td>
+            <td scope="col" class="text-center">{{p.cuotasPagas}}</td>
+            <td scope="col" class="text-center">
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="verPrestamo(p.idPrestamo)" class="fa-solid fa-eye me-3 icono iconos-fontawesome" tippy="Ver Transaccion"></i>
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="modificarPrestamo(p.idPrestamo)"  class="fa-solid fa-pencil me-3 icono iconos-fontawesome" tippy="Editar Transaccion" ></i>
+              <i type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="anular(p.idPrestamo)" class="fa-solid fa-ban me-3 icono iconos-fontawesome" tippy="Anular Transaccion"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="offCanvasVista == true">
+  <app-vista-prestamo [id]="idPrestamo"></app-vista-prestamo>
+</div>

@@ -1,0 +1,34 @@
+<div class="p-5 mx-3">
+    <div class="row p-2">
+      <div class="col-lg-10 col-md-10 col-sm-12">
+          <h1>Listado de Puntos</h1>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table table-hover table-headers">
+            <tr>
+              <th scope="col" class="text-center">Cliente</th>
+              <th scope="col" class="text-center">Fecha</th>
+              <th scope="col" class="text-center">Transacción realizada</th>
+              <th scope="col" class="text-center">Detalle</th>
+              <th scope="col" class="text-center">Puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of puntos">
+              <td scope="col">{{p.cliente }}</td>
+              <td scope="col">{{p.fecha | date: "dd/MM/yyyy HH:mm:ss"}}</td>
+              <td scope="col">{{p.detalle}}</td>
+              <td scope="col">{{p.descripcion}}</td>
+              <td scope="col" class="text-center" [ngClass]="{'importe-negativo': p.puntos< 0, 'importe-positivo': p.puntos >= 0}">{{p.puntos}}</td>
+            </tr>
+          </tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>

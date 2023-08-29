@@ -1,0 +1,70 @@
+<div class="p-5 mx-3">
+    <div class="row p-2">
+      <div class="col-lg-10 col-md-10 col-sm-12">
+          <h1>Pago de cuotas</h1>
+      </div>
+    </div>
+    <hr>
+    <br>
+    <div class="table-container">
+      <form [formGroup]="form">
+        <div class="row py-3">
+          <div class="col-lg-2 col-md-3 col-sm-12">
+            <h3>Entidad Financiera: </h3>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12">
+            <select class="form-select form-select-sm" id="idEntidadFinanciera" formControlName="idEntidadFinanciera" required [class.red-icon]="this.form.get('idEntidadFinanciera')?.invalid">
+              <option [ngValue]="null">Seleccione una entidad</option>
+              <option *ngFor="let ef of entidadesF" [ngValue]=" ef.id ">{{ ef.descripcion }}</option>
+            </select>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-12">
+            <button type="button" class="btn button-primary-action" (click)="guardar()">Enviar</button>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+              <h2>Cuotas a pagar</h2>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6">
+              <i type="button" class="fa-solid fa-circle-plus fa-2xl" style="color: #005F5A;" (click)="newCuotaForm()"></i>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6">
+              <h3>{{index}}</h3>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6">
+              <i class="fa-solid fa-circle-minus fa-2xl" style="color: #f0643c;" (click)="deleteCuotaForm()" *ngIf="index > 1"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row my-3">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <label for="numeroCuota">Cuota N°</label>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <label for="montoCuota">Monto de la cuota</label>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-12">
+            <label for="montoAbonado">Monto a abonar</label>
+          </div>
+        </div>
+        <ng-container [formArrayName]="'detalleCuota'" *ngFor="let dc of detalleCuota.controls; let i = index">
+          <div class="row my-3" [formGroupName]="i">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <input type="number" class="form-control form-control-sm" id="numeroCuota" formControlName="numeroCuota">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <input type="number" class="form-control form-control-sm" id="montoCuota" formControlName="montoCuota">
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+              <input type="number" class="form-control form-control-sm" id="montoAbonado" formControlName="montoAbonado">
+            </div>
+          </div>
+        </ng-container>
+      </form>
+    </div>
+  </div>

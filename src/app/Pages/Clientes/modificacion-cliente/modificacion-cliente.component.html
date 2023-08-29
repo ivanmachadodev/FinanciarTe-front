@@ -1,0 +1,162 @@
+<div class="container col-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 pad py-4">
+  <form [formGroup]="form" class="container py-3 bg-Blanco rounded-4 mtop">
+    <div class="container text-center">
+      <h1 class=" fs-1">Modificar Cliente</h1>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <h1>Datos Personales</h1>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>DNI</label>
+              <input type="number" class="form-control" id="nroDni" formControlName="nroDni" placeholder="Sin puntos ni espacio" [class.red-icon]="this.form.get('nroDni')?.invalid"/>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label for="fechaDeNacimiento">Fecha de Nacimiento</label>
+              <input type="date" class="form-control" id="fechaDeNacimiento" formControlName="fechaDeNacimiento" [class.red-icon]="this.form.get('fechaDeNacimiento')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Nombre/s</label>
+              <input type="text" class="form-control" id="nombres" formControlName="nombres" [class.red-icon]="this.form.get('nombres')?.invalid"/>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Apellido/s</label>
+              <input type="text" id="apellidos" class="form-control" formControlName="apellidos" [class.red-icon]="this.form.get('apellidos')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" formControlName="telefono" placeholder="Sin 0 y sin 15" [class.red-icon]="this.form.get('telefono')?.invalid"/>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="email@ejemplo.com" [class.red-icon]="this.form.get('email')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Dirección</label>
+              <input type="text" class="form-control" id="direccion" formControlName="direccion" [class.red-icon]="this.form.get('direccion')?.invalid"/>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Número</label>
+              <input type="number" class="form-control" id="numero" formControlName="numero" [class.red-icon]="this.form.get('numero')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Provincia</label>
+              <select class="form-control" id="idProvincia" required formControlName="idProvincia" [class.red-icon]="this.form.get('idProvincia')?.invalid">
+                  <option [ngValue]="null">Seleccione una Provincia</option>
+                  <option *ngFor="let p of provincias" [ngValue]="p.id"> {{ p.descripcion }} </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Ciudad</label>
+              <select class="form-control" id="idCiudad" required formControlName="idCiudad" [class.red-icon]="this.form.get('idCiudad')?.invalid">
+                  <option [ngValue]="null">Seleccione una Ciudad</option>
+                  <option *ngFor="let c of ciudades" [ngValue]="c.id"> {{ c.descripcion }} </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Código Postal</label>
+              <input type="text" class="form-control" id="codigoPostal" formControlName="codigoPostal" [class.red-icon]="this.form.get('codigoPostal')?.invalid"/>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 mt-1">
+            <div class="form-group">
+              <label>Puntos iniciales</label>
+              <input type="number" class="form-control" id="puntosIniciales" formControlName="puntosIniciales" [class.red-icon]="this.form.get('puntosIniciales')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-check" *ngIf="comandoCliente.activo==false">
+          <input class="form-check-input" type="checkbox" id="activo" formControlName="activo">
+          <label class="form-check-label" for="activo">Activo</label>
+        </div>
+      </div>
+      <div class="col-xl-1 col-lg-1 col-md-1 col-sm-12"></div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <h1>Contacto alternativo</h1>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <div class="form-group">
+              <label>Nombre/s</label>
+              <input type="text" class="form-control" id="nombresAlt" formControlName="nombresAlt" [class.red-icon]="this.form.get('nombresAlt')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <div class="form-group">
+              <label>Apellido/s</label>
+              <input type="text" id="apellidosAlt" class="form-control" formControlName="apellidosAlt" [class.red-icon]="this.form.get('apellidosAlt')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" class="form-control" id="telAlt" formControlName="telAlt" placeholder="Sin 0 y sin 15" [class.red-icon]="this.form.get('telAlt')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-1">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" id="emailAlt" formControlName="emailAlt" placeholder="email@ejemplo.com" [class.red-icon]="this.form.get('emailAlt')?.invalid"/>
+            </div>
+          </div>
+        </div>
+        <div class="row py-2">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-4">
+            <button type="button" class="btn button-primary-action mx-4 px-4" (click)="modificar()">Guardar</button>
+            <button type="button" class="btn button-cancel-action mx-4 px-4" (click)="limpiarForm()">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <span *ngIf="form.invalid && form.touched" class="invalid">Validar los datos ingresados</span>
+    </div>
+  </form>
+</div>
